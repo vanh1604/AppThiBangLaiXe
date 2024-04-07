@@ -1,8 +1,6 @@
 package com.hktstudio.thibanglaixe.Object;
 
-/**
- * Created by Hiep on 11/6/2017.
- */
+
 
 public class BienBao {
     private String noiDung;

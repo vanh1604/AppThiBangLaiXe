@@ -1,8 +1,6 @@
 package com.hktstudio.thibanglaixe.Object;
 
-/**
- * Created by Hiep on 11/17/2017.
- */
+
 
 public class MeoGhiNho {
     int id;
