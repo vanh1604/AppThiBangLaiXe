@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.hktstudio.thibanglaixe.Adapter.AdapterRecyclerViewLyThuyet;
+import com.hktstudio.thibanglaixe.Adapter.MyAdapter;
 import com.hktstudio.thibanglaixe.DAO.CauHoiDAO;
 import com.hktstudio.thibanglaixe.R;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
@@ -21,7 +22,7 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 public class LyThuyetActivity extends AppCompatActivity implements View.OnClickListener{
     RecyclerView rcv_lyTHuyet;
     Button bt_truoc, bt_sau;
-    AdapterRecyclerViewLyThuyet adapterRecyclerViewLyThuyet;
+    MyAdapter adapterRecyclerViewLyThuyet;
     int dem = 1;
     CauHoiDAO cauHoiDAO;
     Toolbar toolbar;
@@ -42,7 +43,7 @@ public class LyThuyetActivity extends AppCompatActivity implements View.OnClickL
         bt_sau = findViewById(R.id.bt_sau);
         rcv_lyTHuyet = findViewById(R.id.rcv_lyThuyet);
         cauHoiDAO = new CauHoiDAO(this);
-        adapterRecyclerViewLyThuyet = new AdapterRecyclerViewLyThuyet(this,cauHoiDAO.getListCauHoi(dem));
+        adapterRecyclerViewLyThuyet = new MyAdapter(this,cauHoiDAO.getListCauHoi(dem));
         rcv_lyTHuyet.setAdapter(adapterRecyclerViewLyThuyet);
         rcv_lyTHuyet.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         OverScrollDecoratorHelper.setUpOverScroll(rcv_lyTHuyet, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
@@ -58,14 +59,14 @@ public class LyThuyetActivity extends AppCompatActivity implements View.OnClickL
             if (dem!=1){
                 dem--;
                 adapterRecyclerViewLyThuyet
-                        = new AdapterRecyclerViewLyThuyet(LyThuyetActivity.this,cauHoiDAO.getListCauHoi(dem));
+                        = new MyAdapter(LyThuyetActivity.this,cauHoiDAO.getListCauHoi(dem));
                 rcv_lyTHuyet.setAdapter(adapterRecyclerViewLyThuyet);
             }
         } else {
             if (dem!=18){
                 dem++;
                 adapterRecyclerViewLyThuyet
-                        = new AdapterRecyclerViewLyThuyet(LyThuyetActivity.this,cauHoiDAO.getListCauHoi(dem));
+                        = new MyAdapter(LyThuyetActivity.this,cauHoiDAO.getListCauHoi(dem));
                 rcv_lyTHuyet.setAdapter(adapterRecyclerViewLyThuyet);
             }
         }

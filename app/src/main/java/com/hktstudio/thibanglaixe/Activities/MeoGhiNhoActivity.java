@@ -61,7 +61,7 @@ public class MeoGhiNhoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 android.support.v7.widget.PopupMenu popupMenu
-                        = new android.support.v7.widget.PopupMenu(MeoGhiNhoActivity.this,btn_menu);
+                        = new android.support.v7.widget.PopupMenu(MeoGhiNhoActivity.this, btn_menu);
                 popupMenu.getMenuInflater().inflate(R.menu.menu_meoghinho,popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new android.support.v7.widget.PopupMenu.OnMenuItemClickListener() {
                     @Override
@@ -69,7 +69,7 @@ public class MeoGhiNhoActivity extends AppCompatActivity {
                         switch (item.getItemId()){
                             case R.id.item_tatca:
                                 adapterRecyclerViewMeoGhiNho
-                                        = new AdapterRecyclerViewMeoGhiNho(MeoGhiNhoActivity.this,meoGhiNhoDAO.getListMeoGhiNho());
+                                        = new AdapterRecyclerViewMeoGhiNho(MeoGhiNhoActivity.this, meoGhiNhoDAO.getListMeoGhiNho());
                                 rcv_meoGhiNho.removeItemDecoration(decor);
                                 decor = new StickyHeaderDecoration(adapterRecyclerViewMeoGhiNho);
                                 rcv_meoGhiNho.addItemDecoration(decor, 1);

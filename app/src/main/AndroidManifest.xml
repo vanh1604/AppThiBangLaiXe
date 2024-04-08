@@ -10,8 +10,8 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.hktstudio.thibanglaixe.Activities.MainActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,6 +33,12 @@
         <activity android:name="com.hktstudio.thibanglaixe.Activities.MeoGhiNhoActivity"
             android:parentActivityName="com.hktstudio.thibanglaixe.Activities.MainActivity"
             android:label="Mẹo ghi nhớ"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+        <activity android:name="com.hktstudio.thibanglaixe.Activities.LoginActivity"
+            android:label="Login"
             android:screenOrientation="portrait"
             >
         </activity>
