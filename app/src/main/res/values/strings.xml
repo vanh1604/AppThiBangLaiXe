@@ -2,4 +2,13 @@
     <string name="app_name">Thi thử bằng lái xe</string>
     <string name="banner_ad_unit_id">ca-app-pub-3937075478302513/9214705730</string>
     <string name="interstitial_id">ca-app-pub-3937075478302513/7540986828</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>
