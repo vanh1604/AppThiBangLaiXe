@@ -21,7 +21,6 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 public class MeoThucHanhBActivity extends AppCompatActivity {
     TextView tv_kinhNghiemThiB;
     Toolbar toolbar;
-    private InterstitialAd mInterstitialAd;
     int dem = 0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,17 +30,6 @@ public class MeoThucHanhBActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        //Nếu quảng cáo đã tắt tiến hành load quảng cáo
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_id));
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                loadInterstitialAd();
-            }
-        });
-        //Load sẵn quảng cáo khi ứng dụng mở
-        loadInterstitialAd();
         tv_kinhNghiemThiB = findViewById(R.id.tv_kinhNghiemThiB);
         tv_kinhNghiemThiB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +40,7 @@ public class MeoThucHanhBActivity extends AppCompatActivity {
                 if (MainActivity.dem10==3 || MainActivity.checkTime){
                     MainActivity.dem10 = 0;
                     MainActivity.checkTime = false;
-                    mInterstitialAd.show();
+
                 }
             }
         });
@@ -60,25 +48,16 @@ public class MeoThucHanhBActivity extends AppCompatActivity {
         OverScrollDecoratorHelper.setUpOverScroll(scrollView);
     }
     //Load InterstitialAd
-    private void loadInterstitialAd() {
-        if (mInterstitialAd != null) {
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .build();
-
-            mInterstitialAd.loadAd(adRequest);
-        }
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (!mInterstitialAd.isLoaded())loadInterstitialAd();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (!mInterstitialAd.isLoaded())loadInterstitialAd();
+
     }
 }

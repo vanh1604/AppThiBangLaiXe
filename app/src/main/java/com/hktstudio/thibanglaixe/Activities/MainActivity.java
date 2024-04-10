@@ -23,8 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout bt_thiSatHach, bt_bienBao, bt_lyThuyet, bt_meoGhiNho, bt_meoThucHanh, bt_lichSuBaiThi, bt_dang_nhap;
     Button bt_a121, bt_b121, bt_cancel1, bt_a122, bt_b122, bt_cancel2;
     Dialog dialogThiSatHach, dialogMeoThucHanh;
-    private AdView mAdView;
-    private InterstitialAd mInterstitialAd;
+
     int dem1 = 0,dem2=0, dem3 = 0, dem4 = 0, dem5=0,dem6=0;
     //dem act thi sat hach, bien bao, ly thuyet, meo ghi nho, meo thuc hanh, lichsubaithi to load ad
     public static int dem7=0,dem8=0,dem9=0,dem10=0;
@@ -42,22 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void setControl(){
-        mAdView =(AdView)findViewById(R.id.adView);
         //Load ads
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
-        //Nếu quảng cáo đã tắt tiến hành load quảng cáo
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_id));
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                loadInterstitialAd();
-            }
-        });
-        //Load sẵn quảng cáo khi ứng dụng mở
-        loadInterstitialAd();
         bt_thiSatHach = findViewById(R.id.bt_thiSatHach);
         bt_bienBao = findViewById(R.id.bt_bienBao);
         bt_lyThuyet = findViewById(R.id.bt_lyThuyet);
@@ -73,44 +58,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //Load InterstitialAd
-    private void loadInterstitialAd() {
-        if (mInterstitialAd != null) {
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .build();
-
-            mInterstitialAd.loadAd(adRequest);
-        }
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (!mInterstitialAd.isLoaded())loadInterstitialAd();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (mAdView != null) {
-            mAdView.resume();
-        }
-        if (!mInterstitialAd.isLoaded())loadInterstitialAd();
     }
     @Override
     protected void onPause() {
         super.onPause();
-        if (mAdView != null) {
-            mAdView.pause();
-        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mAdView != null) {
-            mAdView.destroy();
-        }
     }
 
     public void setDialogThiSatHach(){
@@ -154,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (dem2==3 || checkTime){
                     dem2 = 0;
                     checkTime = false;
-                    mInterstitialAd.show();
+
                 }
                 break;
             case R.id.bt_lyThuyet:
@@ -164,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (dem3==3 || checkTime){
                     dem3 = 0;
                     checkTime = false;
-                    mInterstitialAd.show();
+
                 }
                 break;
             case R.id.bt_meoGhiNho:
@@ -174,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (dem4==3 || checkTime){
                     dem4 = 0;
                     checkTime = false;
-                    mInterstitialAd.show();
                 }
                 break;
             case R.id.bt_meoThucHanh:
@@ -187,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (dem6==3 || checkTime){
                     dem6 = 0;
                     checkTime = false;
-                    mInterstitialAd.show();
                 }
                 break;
             case R.id.bt_a121:
@@ -199,7 +162,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (dem1==3 || checkTime){
                     dem1 = 0;
                     checkTime = false;
-                    mInterstitialAd.show();
                 }
                 break;
             case R.id.bt_b121:
@@ -211,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (dem1==3 || checkTime){
                     dem1 = 0;
                     checkTime = false;
-                    mInterstitialAd.show();
                 }
                 break;
             case R.id.bt_cancel1:
@@ -225,7 +186,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (dem5==3 || checkTime){
                     dem5 = 0;
                     checkTime = false;
-                    mInterstitialAd.show();
                 }
                 break;
             case R.id.bt_b122:
@@ -235,7 +195,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (dem5==3 || checkTime){
                     dem5 = 0;
                     checkTime = false;
-                    mInterstitialAd.show();
                 }
                 break;
             case R.id.bt_cancel2:

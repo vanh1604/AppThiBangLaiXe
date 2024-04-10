@@ -58,7 +58,6 @@ public class ThiSatHachActivity extends AppCompatActivity implements View.OnClic
     TextView tv_time;
     Thread t;
     int FLAG=0;
-    private InterstitialAd mInterstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(null);
@@ -118,27 +117,16 @@ public class ThiSatHachActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    //Load InterstitialAd
-    private void loadInterstitialAd() {
-        if (mInterstitialAd != null) {
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .build();
-
-            mInterstitialAd.loadAd(adRequest);
-        }
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
-        if (!mInterstitialAd.isLoaded())loadInterstitialAd();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (!mInterstitialAd.isLoaded())loadInterstitialAd();
+
     }
 
     public void setControl() {
@@ -146,17 +134,6 @@ public class ThiSatHachActivity extends AppCompatActivity implements View.OnClic
         setSupportActionBar(toolbar);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         //actionBar.setDisplayHomeAsUpEnabled(true);
-        //Nếu quảng cáo đã tắt tiến hành load quảng cáo
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_id));
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                loadInterstitialAd();
-            }
-        });
-        //Load sẵn quảng cáo khi ứng dụng mở
-        loadInterstitialAd();
         tv_time = findViewById(R.id.tv_time);
         setTime();
         bt_truoc = findViewById(R.id.bt_truoc);
@@ -249,7 +226,6 @@ public class ThiSatHachActivity extends AppCompatActivity implements View.OnClic
                     MainActivity.dem7++;
                     if (MainActivity.dem7==5){
                         MainActivity.dem7 = 0;
-                        mInterstitialAd.show();
                     }
                     for (int i=0;i<a.size();i++) sttCauHoi[i]= (int) a.get(i);
                     startActivity(intent_ketQua);
