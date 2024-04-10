@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.hktstudio.thibanglaixe.R;
@@ -18,7 +19,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Runnable{
-    LinearLayout bt_thiSatHach, bt_bienBao, bt_lyThuyet, bt_meoGhiNho, bt_meoThucHanh, bt_lichSuBaiThi;
+    EditText tf_ten_nguoi_dung, tf_mat_khau;
+    LinearLayout bt_thiSatHach, bt_bienBao, bt_lyThuyet, bt_meoGhiNho, bt_meoThucHanh, bt_lichSuBaiThi, bt_dang_nhap;
     Button bt_a121, bt_b121, bt_cancel1, bt_a122, bt_b122, bt_cancel2;
     Dialog dialogThiSatHach, dialogMeoThucHanh;
     private AdView mAdView;
