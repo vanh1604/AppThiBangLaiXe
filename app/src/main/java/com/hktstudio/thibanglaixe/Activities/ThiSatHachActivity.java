@@ -14,9 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 import com.hktstudio.thibanglaixe.Adapter.AdapterRecyclerViewThiSatHach;
 import com.hktstudio.thibanglaixe.DAO.CauHoiDAO;
 import com.hktstudio.thibanglaixe.Object.CauHoi;
@@ -223,10 +220,6 @@ public class ThiSatHachActivity extends AppCompatActivity implements View.OnClic
                     }
                     Intent intent_ketQua = new Intent(ThiSatHachActivity.this,KetQuaActivity.class);
                     intent_ketQua.putExtra("soCauDung",soCauDung);
-                    MainActivity.dem7++;
-                    if (MainActivity.dem7==5){
-                        MainActivity.dem7 = 0;
-                    }
                     for (int i=0;i<a.size();i++) sttCauHoi[i]= (int) a.get(i);
                     startActivity(intent_ketQua);
                     t.interrupt();

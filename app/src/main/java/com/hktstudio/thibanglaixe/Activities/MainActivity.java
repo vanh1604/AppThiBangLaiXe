@@ -6,43 +6,26 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.hktstudio.thibanglaixe.R;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, Runnable{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     EditText tf_ten_nguoi_dung, tf_mat_khau;
     LinearLayout bt_thiSatHach, bt_bienBao, bt_lyThuyet, bt_meoGhiNho, bt_meoThucHanh, bt_lichSuBaiThi, bt_dang_nhap;
     Button bt_a121, bt_b121, bt_cancel1, bt_a122, bt_b122, bt_cancel2;
     Dialog dialogThiSatHach, dialogMeoThucHanh;
-
-    int dem1 = 0,dem2=0, dem3 = 0, dem4 = 0, dem5=0,dem6=0;
-    //dem act thi sat hach, bien bao, ly thuyet, meo ghi nho, meo thuc hanh, lichsubaithi to load ad
-    public static int dem7=0,dem8=0,dem9=0,dem10=0;
-    //dem act ketquathi, xemlaidapan, kinhnghiema, kinhnghiemb to load ad;
-    Thread t;
-    int time = 0;
-    public static boolean checkTime = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setControl();
-        t = new Thread(this);
-        t.start();
     }
 
     public void setControl(){
-        //Load ads
-        AdRequest adRequest = new AdRequest.Builder().build();
         bt_thiSatHach = findViewById(R.id.bt_thiSatHach);
         bt_bienBao = findViewById(R.id.bt_bienBao);
         bt_lyThuyet = findViewById(R.id.bt_lyThuyet);
@@ -56,8 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bt_meoThucHanh.setOnClickListener(this);
         bt_lichSuBaiThi.setOnClickListener(this);
     }
-
-    //Load InterstitialAd
 
     @Override
     protected void onStart() {
@@ -115,31 +96,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.bt_bienBao:
                 Intent intentBienBao = new Intent(this,BienBaoActivity.class);
                 startActivity(intentBienBao);
-                dem2++;
-                if (dem2==3 || checkTime){
-                    dem2 = 0;
-                    checkTime = false;
 
-                }
                 break;
             case R.id.bt_lyThuyet:
                 Intent intentLyThuyet = new Intent(this,LyThuyetActivity.class);
                 startActivity(intentLyThuyet);
-                dem3++;
-                if (dem3==3 || checkTime){
-                    dem3 = 0;
-                    checkTime = false;
-
-                }
                 break;
             case R.id.bt_meoGhiNho:
                 Intent intentMeoGhiNho = new Intent(this,MeoGhiNhoActivity.class);
                 startActivity(intentMeoGhiNho);
-                dem4++;
-                if (dem4==3 || checkTime){
-                    dem4 = 0;
-                    checkTime = false;
-                }
                 break;
             case R.id.bt_meoThucHanh:
                 setDialogMeoThucHanh();
@@ -147,33 +112,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.bt_lichSuBaiThi:
                 Intent intent_lichsu = new Intent(MainActivity.this,LichSuBaiThiActivity.class);
                 startActivity(intent_lichsu);
-                dem6++;
-                if (dem6==3 || checkTime){
-                    dem6 = 0;
-                    checkTime = false;
-                }
                 break;
             case R.id.bt_a121:
                 Intent intentThiSatHachA = new Intent(MainActivity.this,ThiSatHachActivity.class);
                 intentThiSatHachA.putExtra("tenBaiThi",'a');
                 startActivity(intentThiSatHachA);
                 dialogThiSatHach.dismiss();
-                dem1++;
-                if (dem1==3 || checkTime){
-                    dem1 = 0;
-                    checkTime = false;
-                }
                 break;
             case R.id.bt_b121:
                 Intent intentThiSatHachB = new Intent(MainActivity.this,ThiSatHachActivity.class);
                 intentThiSatHachB.putExtra("tenBaiThi",'b');
                 startActivity(intentThiSatHachB);
                 dialogThiSatHach.dismiss();
-                dem1++;
-                if (dem1==3 || checkTime){
-                    dem1 = 0;
-                    checkTime = false;
-                }
                 break;
             case R.id.bt_cancel1:
                 dialogThiSatHach.dismiss();
@@ -182,43 +132,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intentThucHanhA = new Intent(this,MeoThucHanhAActivity.class);
                 startActivity(intentThucHanhA);
                 dialogMeoThucHanh.dismiss();
-                dem5++;
-                if (dem5==3 || checkTime){
-                    dem5 = 0;
-                    checkTime = false;
-                }
                 break;
             case R.id.bt_b122:
                 Intent intentThucHanhB = new Intent(this,MeoThucHanhBActivity.class);
                 startActivity(intentThucHanhB);
                 dialogMeoThucHanh.dismiss();
-                if (dem5==3 || checkTime){
-                    dem5 = 0;
-                    checkTime = false;
-                }
                 break;
             case R.id.bt_cancel2:
                 dialogMeoThucHanh.dismiss();
                 break;
             default:
                 break;
-        }
-    }
-
-    @Override
-    public void run() {
-        while (true) {
-            time+=1;
-            if (time== 180) {
-                checkTime = true;
-                time = 0;
-                Log.d("Checktime","OK");
-            }
-            try {
-                t.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

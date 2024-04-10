@@ -9,9 +9,6 @@ import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 import com.hktstudio.thibanglaixe.R;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
@@ -36,11 +33,6 @@ public class MeoThucHanhAActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MeoThucHanhAActivity.this,KinhNghiemThiAActivity.class);
                 startActivity(intent);
-                MainActivity.dem9++;
-                if (MainActivity.dem9==3 || MainActivity.checkTime){
-                    MainActivity.dem9 = 0;
-                    MainActivity.checkTime = false;
-                }
             }
         });
         ScrollView scrollView = findViewById(R.id.scrollView);

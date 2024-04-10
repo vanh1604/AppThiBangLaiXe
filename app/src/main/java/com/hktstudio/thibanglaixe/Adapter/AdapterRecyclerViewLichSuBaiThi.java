@@ -1,12 +1,10 @@
 package com.hktstudio.thibanglaixe.Adapter;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -16,10 +14,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.hktstudio.thibanglaixe.Activities.MainActivity;
 import com.hktstudio.thibanglaixe.Activities.XemLaiDapAnActivity;
 import com.hktstudio.thibanglaixe.Object.CauHoi;
 import com.hktstudio.thibanglaixe.Object.DeThi;
@@ -36,34 +30,12 @@ public class AdapterRecyclerViewLichSuBaiThi extends RecyclerView.Adapter<Adapte
     Context context;
     private LayoutInflater mInflater;
     public static int pos;
-    private InterstitialAd mInterstitialAd;
     int dem = 0;
     public AdapterRecyclerViewLichSuBaiThi(Context context,List<DeThi> listDeThi) {
         this.listDeThi = listDeThi;
         this.context = context;
         mInflater = LayoutInflater.from(context);
         //Nếu quảng cáo đã tắt tiến hành load quảng cáo
-        mInterstitialAd = new InterstitialAd(context);
-        mInterstitialAd.setAdUnitId(context.getString(R.string.interstitial_id));
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                loadInterstitialAd();
-            }
-        });
-        //Load sẵn quảng cáo khi ứng dụng mở
-        loadInterstitialAd();
-    }
-
-    //Load InterstitialAd
-    private void loadInterstitialAd() {
-        if (mInterstitialAd != null) {
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .build();
-
-            mInterstitialAd.loadAd(adRequest);
-        }
     }
 
     @Override
@@ -83,13 +55,6 @@ public class AdapterRecyclerViewLichSuBaiThi extends RecyclerView.Adapter<Adapte
                 SIZE = listDeThi.get(position).getListCauHoi().size();
                 intent_xemDapAn.putExtra("from",'l');
                 context.startActivity(intent_xemDapAn);
-                MainActivity.dem8++;
-                if (MainActivity.dem8==3||MainActivity.checkTime){
-                    MainActivity.dem8 = 0;
-                    MainActivity.checkTime = false;
-                    mInterstitialAd.show();
-                }
-
             }
         });
     }

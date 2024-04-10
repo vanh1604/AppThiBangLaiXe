@@ -13,9 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 import com.hktstudio.thibanglaixe.R;
 import static com.hktstudio.thibanglaixe.Activities.ThiSatHachActivity.SIZE;
 import static com.hktstudio.thibanglaixe.Activities.ThiSatHachActivity.soCauDung;
@@ -88,12 +85,6 @@ public class KetQuaActivity extends AppCompatActivity implements View.OnClickLis
         if (view==btXemDapAn){
             Intent intent_xemDapAn = new Intent(KetQuaActivity.this,XemLaiDapAnActivity.class);
             startActivity(intent_xemDapAn);
-            MainActivity.dem7++;
-            if (MainActivity.dem7==3||MainActivity.checkTime ){
-                MainActivity.dem7 = 0;
-                MainActivity.checkTime = false;
-
-            }
         } else if (view==btDeThiKhac){
             Intent intent_thiSatHach = new Intent(KetQuaActivity.this,ThiSatHachActivity.class);
             if (SIZE == 20){

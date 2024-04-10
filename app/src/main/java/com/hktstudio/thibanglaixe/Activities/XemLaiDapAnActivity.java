@@ -45,9 +45,7 @@ public class XemLaiDapAnActivity extends AppCompatActivity {
             adapterRecyclerViewXemDapAn = new AdapterRecyclerViewXemDapAn(this,list,checkDungSai,'l');
         }
         else {
-            for (int i=0;i<SIZE;i++){
-                this.list.add(ThiSatHachActivity.list.get(i));
-            }
+            list.addAll(ThiSatHachActivity.list);
             adapterRecyclerViewXemDapAn = new AdapterRecyclerViewXemDapAn(this,list,checkDungSai,'t');
         }
         rcv_xemDapAn.setAdapter(adapterRecyclerViewXemDapAn);
